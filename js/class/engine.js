@@ -1,5 +1,5 @@
 var Engine = function(global) {
-  this.doc = global.document;
+  this.gameBoard = global.document.getElementById('game-board');
 };
 
 // initialize the game board
