@@ -1,0 +1,74 @@
+body {
+    background-color: dimgrey;
+    align-content: center;
+}
+
+.game-board {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 568px;
+    width: 568px;
+    min-height: 568px;
+    height: 568px;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fefefe;
+    border: 1px solid LightGray;
+    border-radius: 5px;
+}
+
+.card {
+    /* contains both sides of a card */
+}
+
+.card-side {
+    min-width: 128px;
+    width: 128px;
+    min-height: 128px;
+    height: 128px;
+    margin: 6px;
+    background-color: #f6f6f6;
+    border: 1px solid DarkGray;
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.card-back {
+    background-image: url('../images/emblem-un.png');
+}
+
+.card-face-0 {
+    background-image: url('../images/flag-brazil.png');
+}
+
+.card-face-1 {
+    background-image: url('../images/flag-canada.png');
+}
+
+.card-face-2 {
+    background-image: url('../images/flag-china.png');
+}
+
+.card-face-3 {
+    background-image: url('../images/flag-india.png');
+}
+
+.card-face-4 {
+    background-image: url('../images/flag-southafrica.png');
+}
+
+.card-face-5 {
+    background-image: url('../images/flag-switzerland.png');
+}
+
+.card-face-6 {
+    background-image: url('../images/flag-uk.png');
+}
+
+.card-face-7 {
+    background-image: url('../images/flag-usa.png');
+}
