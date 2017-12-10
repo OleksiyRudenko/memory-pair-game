@@ -1,4 +1,4 @@
-var Engine = function(doc) {
+let Engine = function(doc) {
   this.doc = doc;
   this.gameBoard = this.doc.getElementById('game-board');
   this.cardSet = [];
