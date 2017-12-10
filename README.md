@@ -7,3 +7,7 @@ The game ends when the last pair has been picked up.
 
 The game is developed as a task of
 [Kottans frontend course](https://github.com/OleksiyRudenko/kottans_frontend).
+
+### Time Track
+
+* `171211 02 hrs` - style, Engine and Card classes initialized
