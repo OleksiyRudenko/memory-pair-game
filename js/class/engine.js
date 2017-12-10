@@ -1,5 +1,6 @@
-var Engine = function(global) {
-  this.gameBoard = global.document.getElementById('game-board');
+var Engine = function(doc) {
+  this.doc = doc;
+  this.gameBoard = this.doc.getElementById('game-board');
 };
 
 // initialize the game board
@@ -13,6 +14,13 @@ Engine.prototype.init = function() {
   cardSet.sort(function(){ return 0.5 - Math.random(); });
 
   // build cards
-
-
+  var container = this.doc.createElement('div');
+  container.className = 'game-board';
+  cardSet.forEach(function(cardSetId) {
+    var card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = '<div class="card-side card-face-' + cardSetId +'"></div>';
+    container.appendChild(card);
+  });
+  this.gameBoard.appendChild(container);
 };
