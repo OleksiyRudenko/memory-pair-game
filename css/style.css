@@ -3,11 +3,12 @@ body {
     align-content: center;
 }
 
+/* game board container */
 .game-board {
     display: flex;
     flex-wrap: wrap;
-    min-width: 568px;
-    width: 568px;
+    min-width: 562px;
+    width: 562px;
     min-height: 568px;
     height: 568px;
     margin: auto;
@@ -20,27 +21,57 @@ body {
     border-radius: 5px;
 }
 
-.card {
-    /* contains both sides of a card */
-}
+/* flipping technique source: https://davidwalsh.name/css-flip
+   flip-container -> card
+   back -> card-face
+   front -> card-back
+   back, front -> card-side
 
-.card-side {
+ */
+
+/* card container and card side dimensions */
+.card, .card-side {
     min-width: 128px;
     width: 128px;
     min-height: 128px;
     height: 128px;
+}
+
+/* contains both sides of a card */
+div.card {
+    perspective: 128px;
     margin: 6px;
+}
+
+/* common styles for every card side - face or back */
+.card-side {
     background-color: #f6f6f6;
     border: 1px solid DarkGray;
     border-radius: 5px;
     background-repeat: no-repeat;
     background-position: center center;
+
+    /* flipping support */
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
+/* card back style - above face*/
 .card-back {
     background-image: url('../images/emblem-un.png');
+    z-index: 2;
+    /* for firefox 31 */
+    transform: rotateY(0deg);
 }
 
+/* common properties for all card faces */
+.card-face {
+    transform: rotateY(180deg);
+}
+
+/* individual card faces per set (8 sets, 2 similar cards in each) */
 .card-face-0 {
     background-image: url('../images/flag-brazil.png');
 }
@@ -71,4 +102,55 @@ body {
 
 .card-face-7 {
     background-image: url('../images/flag-usa.png');
+}
+
+/* flipping controls */
+/* .card:hover .flipper, */
+.card.hover .flipper, .card.flip .flipper {
+    transform: rotateY(180deg);
+}
+
+/* flipping effect speed */
+.flipper {
+    transition: 0.3s;
+    transform-style: preserve-3d;
+
+    position: relative;
+}
+
+/* game over */
+.game-over {
+    display: none;
+    min-width: 280px;
+    width: 280px;
+    min-height: 180px;
+    height: 180px;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0,153,51,0.9);
+    border: 1px solid #093;
+    border-radius: 5px;
+    text-align: center;
+}
+
+h1 {
+    color: #fa3;
+}
+
+p {
+    color: #fa3;
+}
+
+button.btn-restart {
+    background-color: #06f;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
