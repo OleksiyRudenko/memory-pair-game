@@ -7,8 +7,8 @@ body {
 .game-board {
     display: flex;
     flex-wrap: wrap;
-    min-width: 568px;
-    width: 568px;
+    min-width: 562px;
+    width: 562px;
     min-height: 568px;
     height: 568px;
     margin: auto;
@@ -116,4 +116,41 @@ div.card {
     transform-style: preserve-3d;
 
     position: relative;
+}
+
+/* game over */
+.game-over {
+    display: none;
+    min-width: 280px;
+    width: 280px;
+    min-height: 180px;
+    height: 180px;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0,153,51,0.9);
+    border: 1px solid #093;
+    border-radius: 5px;
+    text-align: center;
+}
+
+h1 {
+    color: #fa3;
+}
+
+p {
+    color: #fa3;
+}
+
+button.btn-restart {
+    background-color: #06f;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }

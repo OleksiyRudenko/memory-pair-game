@@ -3,10 +3,12 @@ let Engine = function(doc) {
   this.gameBoard = this.doc.getElementById('game-board');
   this.cardSet = [];
   this.flippedCardQueue = [];
+  this.clickCount = 0;
 };
 
 // initialize the game board
 Engine.prototype.init = function() {
+  this.clickCount = 0;
   // create shuffled list
   let cardSetIdList = [];
   for (let i=0; i<8; i++) {
@@ -32,6 +34,7 @@ Engine.prototype.init = function() {
 };
 
 Engine.prototype.onCardFlipOver = function(idIndex) {
+  this.clickCount++;
   // Add card to the queue.
   console.log('Card #' + idIndex + ' flipped face up.');
   this.flippedCardQueue.push(idIndex);
@@ -87,6 +90,12 @@ Engine.prototype.onCardsRemoval = function() {
   });
   console.log(count + ' cards remain on the board');
   if (!count) {
-    console.log('No cards remained!');
+    console.log('No cards remaining!');
+    document.getElementById('click-count').innerText = this.clickCount;
+    document.getElementById('game-over').style.display = 'block';
   }
+};
+
+Engine.prototype.restart = function() {
+
 };
