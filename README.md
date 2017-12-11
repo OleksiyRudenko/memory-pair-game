@@ -14,8 +14,9 @@ The game is developed as a task from
 
 ### Time Track
 
-* `TOTAL= 05h25`
+* `TOTAL= 07h05`
 * `171211 02h00` - style, Engine and Card classes initialized
 * `171211 01h20` - card flip animation and Card.onClick handler
 * `171211 01h25` - remove matching cards
 * `171211 00h40` - game restart
+* `171211 01h40` - style fixes
