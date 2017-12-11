@@ -76,28 +76,28 @@ Engine.prototype.onCardFlipOver = function(idIndex) {
     this.cardSet[this.flippedCardQueue[1]].flipDown();
     this.flippedCardQueue.shift();
     this.flippedCardQueue.shift();
-    console.log('Removed two cards from the queue and have: ');
-    console.log(this.flippedCardQueue);
+    /* console.log('Removed two cards from the queue and have: ');
+    console.log(this.flippedCardQueue); */
   }
   // If there are two cards in queue and their setIds are equal
   //   then hide/remove both from view, queue, and cardSet.
   if (this.flippedCardQueue.length === 2
     && this.cardSet[this.flippedCardQueue[0]].setId === this.cardSet[this.flippedCardQueue[1]].setId) {
-    console.log('cardSet[~0]: ');
+    /* console.log('cardSet[~0]: ');
     console.log(this.cardSet[this.flippedCardQueue[0]]);
     console.log('cardSet[~1]: ');
-    console.log(this.cardSet[this.flippedCardQueue[1]]);
+    console.log(this.cardSet[this.flippedCardQueue[1]]); */
     setTimeout(() => {
       this.cardSet[this.flippedCardQueue[0]].hide();
       this.cardSet[this.flippedCardQueue[1]].hide();
       this.cardSet[this.flippedCardQueue[0]] = null;
       this.cardSet[this.flippedCardQueue[1]] = null;
-      console.log('Removed two cards from the board and have: ');
-      console.log(this.cardSet);
+      /* console.log('Removed two cards from the board and have: ');
+      console.log(this.cardSet); */
       this.flippedCardQueue.shift();
       this.flippedCardQueue.shift();
-      console.log('Removed two cards from the queue and have: ');
-      console.log(this.flippedCardQueue);
+      /* console.log('Removed two cards from the queue and have: ');
+      console.log(this.flippedCardQueue); */
       // check if any cards remain on the board
       this.onCardsRemoval();
     }, 500);
@@ -116,7 +116,7 @@ Engine.prototype.onCardsRemoval = function() {
   //   then game is completed, restart the game.
   let count = 0;
   this.cardSet.forEach(function(el){
-    console.log(el);
+    // console.log(el);
     if (el) count++;
   });
   console.log(count + ' cards remain on the board');
