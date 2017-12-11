@@ -8,7 +8,11 @@ let Engine = function(doc) {
 
 // initialize the game board
 Engine.prototype.init = function() {
+  // reset board
+  this.gameBoard.innerHTML = '';
+
   this.clickCount = 0;
+
   // create shuffled list
   let cardSetIdList = [];
   for (let i=0; i<8; i++) {
