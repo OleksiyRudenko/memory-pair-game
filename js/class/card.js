@@ -8,15 +8,20 @@ Card.prototype.createElement = function() {
   const el = document.createElement('div');
   el.className = 'card';
 
+  // create flipper div
+  elFlipper = document.createElement('div');
+  elFlipper.className = 'flipper';
+
   // create card back element
   const elBack = document.createElement('div');
   elBack.className = 'card-side card-back';
-  el.appendChild(elBack);
+  elFlipper.appendChild(elBack);
 
   // create card face element
   const elFace = document.createElement('div');
-  elFace.className = 'card-side card-face-' + this.setId;
-  el.appendChild(elBack);
+  elFace.className = 'card-side card-face card-face-' + this.setId;
+  elFlipper.appendChild(elFace);
 
+  el.appendChild(elFlipper);
   return el;
 };
