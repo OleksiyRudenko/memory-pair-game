@@ -105,7 +105,8 @@ div.card {
 }
 
 /* flipping controls */
-.card:hover .flipper, .card.hover .flipper {
+/* .card:hover .flipper, */
+.card.hover .flipper, .card.flip .flipper {
     transform: rotateY(180deg);
 }
 

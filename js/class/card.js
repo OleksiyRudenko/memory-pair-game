@@ -26,6 +26,16 @@ Card.prototype.createElement = function() {
   elFace.className = 'card-side card-face card-face-' + this.setId;
   elFlipper.appendChild(elFace);
 
+  // add event handler
+  el.onclick = this.onClick.bind(this);
+
+    // complete container
   el.appendChild(elFlipper);
+  console.log('Created ' + this.elId);
   return el;
+};
+
+Card.prototype.onClick = function() {
+  console.log('Clicked ' + this.elId);
+  document.getElementById(this.elId).classList.toggle('flip');
 };
