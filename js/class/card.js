@@ -43,7 +43,15 @@ Card.prototype.onClick = function() {
   // flip on click only if isFaceDown
   if (this.isFaceDown) {
     document.getElementById(this.elId).classList.toggle('flip');
-    this.actionFlipOver(this.idIndex, this.setId);
+    this.actionFlipOver(this.idIndex);
     this.isFaceDown = false;
+  }
+};
+
+Card.prototype.flipDown = function() {
+  console.log('Flipping down ' + this.elId);
+  if (!this.isFaceDown) {
+    document.getElementById(this.elId).classList.toggle('flip');
+    this.isFaceDown = true;
   }
 };
