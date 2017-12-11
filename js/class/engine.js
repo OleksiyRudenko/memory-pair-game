@@ -18,8 +18,8 @@ Engine.prototype.init = function() {
   const subContainer = this.doc.createElement('div');
   subContainer.className = 'game-board';
   var cardSet = [];
-  cardSetIdList.forEach(function(cardSetId) {
-    const card = new Card(cardSetId);
+  cardSetIdList.forEach(function(cardSetId, index) {
+    const card = new Card(cardSetId, index);
     cardSet.push(card);
     subContainer.appendChild(card.createElement());
   });
