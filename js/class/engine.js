@@ -1,16 +1,27 @@
+/**
+ * Class Engine constructor.
+ * @constructor
+ * @param {Object} doc - reference to document global
+ */
 let Engine = function(doc) {
   this.doc = doc;
-  this.gameBoard = this.doc.getElementById('game-board');
-  this.cardSet = [];
-  this.flippedCardQueue = [];
-  this.clickCount = 0;
+  this.gameBoard = this.doc.getElementById('game-board'); // refers to game-board container
+  this.cardSet = [];          // stores instances of Card class
+  this.flippedCardQueue = []; // stores flipped cards
+  this.clickCount = 0;        // counts flipped cards
 };
 
-// initialize the game board
+/**
+ * This intializes a game board.
+ * @memberof Engine
+ * @name init
+ * @function
+ */
 Engine.prototype.init = function() {
   // reset board
   this.gameBoard.innerHTML = '';
 
+  // reset click count
   this.clickCount = 0;
 
   // create shuffled list
@@ -34,9 +45,18 @@ Engine.prototype.init = function() {
     subContainer.appendChild(card.createElement());
   });
   this.cardSet = cardSet;
+  // attach container to a game board container
   this.gameBoard.appendChild(subContainer);
 };
 
+/**
+ * This is a callback employed by a Card instance when the latter is being clicked.
+ * Called by Card.onClick()
+ * @memberof Engine
+ * @name onCardFlipOver
+ * @function
+ * @param {number} idIndex - card id index
+ */
 Engine.prototype.onCardFlipOver = function(idIndex) {
   this.clickCount++;
   // Add card to the queue.
@@ -56,40 +76,47 @@ Engine.prototype.onCardFlipOver = function(idIndex) {
     this.cardSet[this.flippedCardQueue[1]].flipDown();
     this.flippedCardQueue.shift();
     this.flippedCardQueue.shift();
-    console.log('Removed two cards from the queue and have: ');
-    console.log(this.flippedCardQueue);
+    /* console.log('Removed two cards from the queue and have: ');
+    console.log(this.flippedCardQueue); */
   }
   // If there are two cards in queue and their setIds are equal
   //   then hide/remove both from view, queue, and cardSet.
   if (this.flippedCardQueue.length === 2
     && this.cardSet[this.flippedCardQueue[0]].setId === this.cardSet[this.flippedCardQueue[1]].setId) {
-    console.log('cardSet[~0]: ');
+    /* console.log('cardSet[~0]: ');
     console.log(this.cardSet[this.flippedCardQueue[0]]);
     console.log('cardSet[~1]: ');
-    console.log(this.cardSet[this.flippedCardQueue[1]]);
+    console.log(this.cardSet[this.flippedCardQueue[1]]); */
     setTimeout(() => {
       this.cardSet[this.flippedCardQueue[0]].hide();
       this.cardSet[this.flippedCardQueue[1]].hide();
       this.cardSet[this.flippedCardQueue[0]] = null;
       this.cardSet[this.flippedCardQueue[1]] = null;
-      console.log('Removed two cards from the board and have: ');
-      console.log(this.cardSet);
+      /* console.log('Removed two cards from the board and have: ');
+      console.log(this.cardSet); */
       this.flippedCardQueue.shift();
       this.flippedCardQueue.shift();
-      console.log('Removed two cards from the queue and have: ');
-      console.log(this.flippedCardQueue);
+      /* console.log('Removed two cards from the queue and have: ');
+      console.log(this.flippedCardQueue); */
       // check if any cards remain on the board
       this.onCardsRemoval();
     }, 500);
   }
 };
 
+/**
+ * This checks if there are any cards on the board. If none then game over panel visualized.
+ * Called by Engine.onCardFlipOver()
+ * @memberof Engine
+ * @name onCardsRemoval
+ * @function
+ */
 Engine.prototype.onCardsRemoval = function() {
   // If there are no cards in cardSet
   //   then game is completed, restart the game.
   let count = 0;
   this.cardSet.forEach(function(el){
-    console.log(el);
+    // console.log(el);
     if (el) count++;
   });
   console.log(count + ' cards remain on the board');
@@ -100,6 +127,13 @@ Engine.prototype.onCardsRemoval = function() {
   }
 };
 
+/**
+ * This restarts the game.
+ * Called by onClick event attached to a button at game over panel in app.js
+ * @memberof Engine
+ * @name restart
+ * @function
+ */
 Engine.prototype.restart = function() {
   document.getElementById('game-over').style.display = 'none';
   window.location.reload();

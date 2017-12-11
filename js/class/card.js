@@ -1,14 +1,27 @@
+/**
+ * Class Card constructor.
+ * @constructor
+ * @param {number} setId - set id a card would belong to
+ * @param {number} idIndex - card id index
+ * @param {onCardFlipOver} actionFlipOver - a callback Engine.onCardFlipOver
+ */
 let Card = function(setId, idIndex, actionFlipOver) {
   this.setId = setId;
   this.idIndex = idIndex;
-  this.elId = '';
-  this.elFaceId = '';
-  this.isActive = true;
-  this.isFaceDown = true;
+  this.elId = '';          // card element id
+  this.elFaceId = '';      // card face element id
+  this.isActive = true;    // whether card is active (not removed yet)
+  this.isFaceDown = true;  // whether is card face down
   this.actionFlipOver = actionFlipOver;
 };
 
-// create div element containing the card
+/**
+ * This creates div element containing the card.
+ * @memberof Card
+ * @name createElement
+ * @function
+ * @returns {Object} div element containing card
+ */
 Card.prototype.createElement = function() {
   // create card sides container
   const el = document.createElement('div');
@@ -41,6 +54,13 @@ Card.prototype.createElement = function() {
   return el;
 };
 
+/**
+ * This flips the card and calls Engine.onCardFlipOver callback.
+ * Called by face element within card element event handler whenever card face is clicked.
+ * @memberof Card
+ * @name onClick
+ * @function
+ */
 Card.prototype.onClick = function() {
   console.log('Clicked ' + this.elId);
   // flip on click only if isFaceDown
@@ -51,6 +71,13 @@ Card.prototype.onClick = function() {
   }
 };
 
+/**
+ * This flips card back face down.
+ * Called by Engine.onCardFlipOver()
+ * @memberof Card
+ * @name flipDown
+ * @function
+ */
 Card.prototype.flipDown = function() {
   console.log('Flipping down ' + this.elId);
   if (this.isActive && !this.isFaceDown) {
@@ -59,6 +86,12 @@ Card.prototype.flipDown = function() {
   }
 };
 
+/**
+ * This hides div element containing the card.
+ * @memberof Card
+ * @name hide
+ * @function
+ */
 Card.prototype.hide = function() {
   console.log('Hiding ' + this.elId);
   if (this.isActive) {
