@@ -20,8 +20,10 @@ Engine.prototype.init = function() {
   subContainer.className = 'game-board';
   var cardSet = [];
   const onCardFlipOver = this.onCardFlipOver;
+  let self = this;
+  console.log(this.onCardFlipOver);
   cardSetIdList.forEach(function(cardSetId, index) {
-    const card = new Card(cardSetId, index, onCardFlipOver);
+    const card = new Card(cardSetId, index, onCardFlipOver.bind(self));
     cardSet.push(card);
     subContainer.appendChild(card.createElement());
   });
@@ -32,8 +34,14 @@ Engine.prototype.init = function() {
 Engine.prototype.onCardFlipOver = function(cardId) {
   // Add card to the queue.
   console.log('Card ' + cardId + ' flipped face up.');
+  this.flippedCardQueue.push(cardId);
+  console.log(this.flippedCardQueue);
+
   // If there are three cards in queue then it means two initial are mismatching,
   //   therefore remove initial two from queue and flip them over.
+  if (this.flippedCardQueue.length === 3 && this.flippedCardQueue[0] !== this.flippedCardQueue[1]) {
+
+  }
   // If there are two cards in queue and their setIds are equal
   //   then hide/remove both from view, queue, and cardSet.
   // If there are no cards in cardSet
