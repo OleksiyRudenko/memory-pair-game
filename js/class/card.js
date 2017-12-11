@@ -2,6 +2,8 @@ let Card = function(setId, idIndex) {
   this.setId = setId;
   this.idIndex = idIndex;
   this.elId = '';
+  this.isAactive = true;
+  this.isFaceDown = true;
 };
 
 // create div element containing the card
@@ -37,5 +39,9 @@ Card.prototype.createElement = function() {
 
 Card.prototype.onClick = function() {
   console.log('Clicked ' + this.elId);
-  document.getElementById(this.elId).classList.toggle('flip');
+  // flip on click only if isFaceDown
+  if (this.isFaceDown) {
+    document.getElementById(this.elId).classList.toggle('flip');
+    this.isFaceDown = false;
+  }
 };
