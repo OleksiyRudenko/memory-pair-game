@@ -7,8 +7,8 @@ body {
 .game-board {
     display: flex;
     flex-wrap: wrap;
-    min-width: 562px;
-    width: 562px;
+    min-width: 568px;
+    width: 568px;
     min-height: 568px;
     height: 568px;
     margin: auto;
@@ -30,7 +30,7 @@ body {
  */
 
 /* card container and card side dimensions */
-.card, .card-side {
+.card-side {
     min-width: 128px;
     width: 128px;
     min-height: 128px;
@@ -39,8 +39,12 @@ body {
 
 /* contains both sides of a card */
 div.card {
-    perspective: 128px;
+    perspective: 200px;
     margin: 6px;
+    min-width: 130px;
+    width: 130px;
+    min-height: 130px;
+    height: 130px;
 }
 
 /* common styles for every card side - face or back */
