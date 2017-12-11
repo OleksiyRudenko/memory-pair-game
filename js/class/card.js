@@ -1,9 +1,11 @@
-let Card = function(setId, idIndex) {
+let Card = function(setId, idIndex, actionFlipOver) {
   this.setId = setId;
   this.idIndex = idIndex;
   this.elId = '';
-  this.isAactive = true;
+  this.elFaceId = '';
+  this.isActive = true;
   this.isFaceDown = true;
+  this.actionFlipOver = actionFlipOver;
 };
 
 // create div element containing the card
@@ -26,6 +28,8 @@ Card.prototype.createElement = function() {
   // create card face element
   const elFace = document.createElement('div');
   elFace.className = 'card-side card-face card-face-' + this.setId;
+  this.elFaceId = 'card-face-id-' + this.idIndex;
+  elFace.id = this.elFaceId;
   elFlipper.appendChild(elFace);
 
   // add event handler
@@ -40,8 +44,25 @@ Card.prototype.createElement = function() {
 Card.prototype.onClick = function() {
   console.log('Clicked ' + this.elId);
   // flip on click only if isFaceDown
-  if (this.isFaceDown) {
+  if (this.isActive && this.isFaceDown) {
     document.getElementById(this.elId).classList.toggle('flip');
+    this.actionFlipOver(this.idIndex);
     this.isFaceDown = false;
+  }
+};
+
+Card.prototype.flipDown = function() {
+  console.log('Flipping down ' + this.elId);
+  if (this.isActive && !this.isFaceDown) {
+    document.getElementById(this.elId).classList.toggle('flip');
+    this.isFaceDown = true;
+  }
+};
+
+Card.prototype.hide = function() {
+  console.log('Hiding ' + this.elId);
+  if (this.isActive) {
+    document.getElementById(this.elFaceId).style.display = 'none';
+    this.isActive = false;
   }
 };
