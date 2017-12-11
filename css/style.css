@@ -21,6 +21,14 @@ body {
     border-radius: 5px;
 }
 
+/* flipping technique source: https://davidwalsh.name/css-flip
+   flip-container -> card
+   back -> card-face
+   front -> card-back
+   back, front -> card-side
+
+ */
+
 /* card container and card side dimensions */
 .card, .card-side {
     min-width: 128px;
@@ -103,7 +111,7 @@ div.card {
 
 /* flipping effect speed */
 .flipper {
-    transition: 0.6s;
+    transition: 0.3s;
     transform-style: preserve-3d;
 
     position: relative;
