@@ -11,10 +11,10 @@ body, p, h1, button {
 .game-board {
     display: flex;
     flex-wrap: wrap;
-    min-width: 568px;
-    width: 568px;
-    min-height: 568px;
-    height: 568px;
+    min-width: 276px;
+    width: 276px;
+    min-height: 276px;
+    height: 276px;
     margin: auto;
     position: absolute;
     top: 50%;
@@ -22,7 +22,7 @@ body, p, h1, button {
     transform: translate(-50%, -50%);
     background-color: #fefefe;
     border: 1px solid LightGray;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 /* flipping technique source: https://davidwalsh.name/css-flip
@@ -33,29 +33,28 @@ body, p, h1, button {
 
  */
 
-/* card container and card side dimensions */
-.card-side {
-    min-width: 128px;
-    width: 128px;
-    min-height: 128px;
-    height: 128px;
-}
-
 /* contains both sides of a card */
 div.card {
-    perspective: 200px;
-    margin: 6px;
-    min-width: 130px;
-    width: 130px;
-    min-height: 130px;
-    height: 130px;
+    perspective: 90px;
+    margin: 2px;
+    min-width: 65px;
+    width: 65px;
+    min-height: 65px;
+    height: 65px;
 }
 
 /* common styles for every card side - face or back */
 .card-side {
+    min-width: 63px;
+    width: 63px;
+    min-height: 63px;
+    height: 63px;
+
     background-color: #f6f6f6;
     border: 1px solid DarkGray;
-    border-radius: 5px;
+    border-radius: 3px;
+
+    background-size: 90%;
     background-repeat: no-repeat;
     background-position: center center;
 
@@ -211,6 +210,32 @@ button.btn-restart {
         width: 120px;
         min-height: 120px;
         height: 120px;
+        background-size: 90%;
+    }
+}
+
+@media screen and (min-width: 570px) and (min-height: 570px) {
+    .game-board {
+        min-width: 568px;
+        width: 568px;
+        min-height: 568px;
+        height: 568px;
+    }
+
+    div.card {
+        perspective: 200px;
+        margin: 6px;
+        min-width: 130px;
+        width: 130px;
+        min-height: 130px;
+        height: 130px;
+    }
+
+    .card-side {
+        min-width: 128px;
+        width: 128px;
+        min-height: 128px;
+        height: 128px;
         background-size: 90%;
     }
 }
