@@ -3,6 +3,10 @@ body {
     align-content: center;
 }
 
+body, p, h1, button {
+    font-family: Verdana, Geneva, sans-serif;
+}
+
 /* game board container */
 .game-board {
     display: flex;
@@ -125,8 +129,8 @@ div.card {
 /* game over */
 .game-over {
     display: none;
-    min-width: 280px;
-    width: 280px;
+    min-width: 320px;
+    width: 320px;
     min-height: 180px;
     height: 180px;
     margin: auto;
@@ -134,18 +138,18 @@ div.card {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(0,153,51,0.9);
-    border: 1px solid #093;
+    background-color: #eee;
+    border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
 }
 
 h1 {
-    color: #fa3;
+    color: #333;
 }
 
 p {
-    color: #fa3;
+    color: #333;
 }
 
 button.btn-restart {
