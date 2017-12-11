@@ -8,6 +8,8 @@ The game ends when the last pair has been picked up.
 The game is developed as a task of
 [Kottans frontend course](https://github.com/OleksiyRudenko/kottans_frontend).
 
+[Play on-line!](https://oleksiyrudenko.github.io/memory-pair-game/)
+
 ### Time Track
 
 * `TOTAL= 05h25`
