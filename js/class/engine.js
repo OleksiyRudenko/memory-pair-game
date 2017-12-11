@@ -21,6 +21,7 @@ Engine.prototype.init = function() {
   // reset board
   this.gameBoard.innerHTML = '';
 
+  // reset click count
   this.clickCount = 0;
 
   // create shuffled list
@@ -44,6 +45,7 @@ Engine.prototype.init = function() {
     subContainer.appendChild(card.createElement());
   });
   this.cardSet = cardSet;
+  // attach container to a game board container
   this.gameBoard.appendChild(subContainer);
 };
 
@@ -125,6 +127,13 @@ Engine.prototype.onCardsRemoval = function() {
   }
 };
 
+/**
+ * This restarts the game.
+ * Called by onClick event attached to a button at game over panel in app.js
+ * @memberof Engine
+ * @name restart
+ * @function
+ */
 Engine.prototype.restart = function() {
   document.getElementById('game-over').style.display = 'none';
   window.location.reload();
