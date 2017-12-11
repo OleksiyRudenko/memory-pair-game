@@ -1,6 +1,7 @@
 let Card = function(setId, idIndex) {
   this.setId = setId;
   this.idIndex = idIndex;
+  this.elId = '';
 };
 
 // create div element containing the card
@@ -8,7 +9,8 @@ Card.prototype.createElement = function() {
   // create card sides container
   const el = document.createElement('div');
   el.className = 'card';
-  el.id = 'card-' + this.idIndex;
+  this.elId = 'card-' + this.idIndex;
+  el.id = this.elId;
 
   // create flipper div
   elFlipper = document.createElement('div');
