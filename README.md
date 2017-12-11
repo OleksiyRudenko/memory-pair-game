@@ -10,6 +10,8 @@ The game is developed as a task from
 
 [Play on-line!](https://oleksiyrudenko.github.io/memory-pair-game/)
 
+![demo screencast](images/memory-pair-game-rs.gif)
+
 ### Time Track
 
 * `TOTAL= 05h25`
