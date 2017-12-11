@@ -31,16 +31,19 @@ Engine.prototype.init = function() {
   this.gameBoard.appendChild(subContainer);
 };
 
-Engine.prototype.onCardFlipOver = function(cardId) {
+Engine.prototype.onCardFlipOver = function(idIndex, setId) {
   // Add card to the queue.
-  console.log('Card ' + cardId + ' flipped face up.');
+  console.log('Card #' + idIndex + ' flipped face up.');
   this.flippedCardQueue.push(cardId);
   console.log(this.flippedCardQueue);
 
   // If there are three cards in queue then it means two initial are mismatching,
   //   therefore remove initial two from queue and flip them over.
-  if (this.flippedCardQueue.length === 3 && this.flippedCardQueue[0] !== this.flippedCardQueue[1]) {
-
+  if (this.flippedCardQueue.length === 3 && this.flippedCardQueue[0].setId !== this.flippedCardQueue[1].setId) {
+    this.cardSet[this.flippedCardQueue[0].idIndex].flipDown();
+    this.cardSet[this.flippedCardQueue[1].idIndex].flipDown();
+    this.flippedCardQueue.shift();
+    this.flippedCardQueue.shift();
   }
   // If there are two cards in queue and their setIds are equal
   //   then hide/remove both from view, queue, and cardSet.
