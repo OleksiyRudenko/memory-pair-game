@@ -97,5 +97,7 @@ Engine.prototype.onCardsRemoval = function() {
 };
 
 Engine.prototype.restart = function() {
-
+  document.getElementById('game-over').style.display = 'none';
+  window.location.reload();
+  // this.init();
 };
