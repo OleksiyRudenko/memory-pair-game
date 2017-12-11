@@ -1,12 +1,22 @@
+/**
+ * Class Engine constructor.
+ * @constructor
+ * @param {Object} doc - reference to document global
+ */
 let Engine = function(doc) {
   this.doc = doc;
-  this.gameBoard = this.doc.getElementById('game-board');
-  this.cardSet = [];
-  this.flippedCardQueue = [];
-  this.clickCount = 0;
+  this.gameBoard = this.doc.getElementById('game-board'); // refers to game-board container
+  this.cardSet = [];          // stores instances of Card class
+  this.flippedCardQueue = []; // stores flipped cards
+  this.clickCount = 0;        // counts flipped cards
 };
 
-// initialize the game board
+/**
+ * This intializes a game board.
+ * @memberof Engine
+ * @name init
+ * @function
+ */
 Engine.prototype.init = function() {
   // reset board
   this.gameBoard.innerHTML = '';
@@ -37,6 +47,14 @@ Engine.prototype.init = function() {
   this.gameBoard.appendChild(subContainer);
 };
 
+/**
+ * This is a callback employed by a Card instance when the latter is being clicked.
+ * Called by Card.onClick()
+ * @memberof Engine
+ * @name onCardFlipOver
+ * @function
+ * @param {number} idIndex - card id index
+ */
 Engine.prototype.onCardFlipOver = function(idIndex) {
   this.clickCount++;
   // Add card to the queue.
@@ -84,6 +102,13 @@ Engine.prototype.onCardFlipOver = function(idIndex) {
   }
 };
 
+/**
+ * This checks if there are any cards on the board. If none then game over panel visualized.
+ * Called by Engine.onCardFlipOver()
+ * @memberof Engine
+ * @name onCardsRemoval
+ * @function
+ */
 Engine.prototype.onCardsRemoval = function() {
   // If there are no cards in cardSet
   //   then game is completed, restart the game.
