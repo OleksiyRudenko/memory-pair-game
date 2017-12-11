@@ -10,4 +10,4 @@ The game is developed as a task of
 
 ### Time Track
 
-* `171211 02 hrs` - style, Engine and Card classes initialized
+* `171211 02h00` - style, Engine and Card classes initialized
