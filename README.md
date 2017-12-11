@@ -10,6 +10,7 @@ The game is developed as a task of
 
 ### Time Track
 
+* `TOTAL= 05h25`
 * `171211 02h00` - style, Engine and Card classes initialized
 * `171211 01h20` - card flip animation and Card.onClick handler
 * `171211 01h25` - remove matching cards
