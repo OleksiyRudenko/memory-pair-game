@@ -17,7 +17,7 @@ Engine.prototype.init = function() {
   // build cards
   const subContainer = this.doc.createElement('div');
   subContainer.className = 'game-board';
-  var cardSet = [];
+  let cardSet = [];
   cardSetIdList.forEach(function(cardSetId, index) {
     const card = new Card(cardSetId, index);
     cardSet.push(card);
