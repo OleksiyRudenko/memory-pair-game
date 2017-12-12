@@ -26,17 +26,17 @@ function whichTransitionEndEvent(){
 /* Listen for a transition! */
 /*
 // Vanilla JS
-let transitionEvent = whichTransitionEvent();
-transitionEvent && e.addEventListener(transitionEvent, function() {
+let transitionEndEvent = whichTransitionEndEvent();
+transitionEndEvent && targetElement.addEventListener(transitionEndEvent, function() {
   console.log('Transition complete!  This is the callback, no library needed!');
 });
 
 // jQuery; source: https://jonsuh.com/blog/detect-the-end-of-css-animations-and-transitions-with-javascript/
-let transitionEvent = whichTransitionEvent();
+let transitionEndEvent = whichTransitionEndEvent();
 
 $(".button").click(function(){
   $(this).addClass("animate");
-  $(this).one(transitionEvent,
+  $(this).one(transitionEndEvent,
               function(event) {
     // Do something when the transition ends
   });
