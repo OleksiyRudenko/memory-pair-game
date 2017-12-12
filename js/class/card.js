@@ -62,10 +62,10 @@ Card.prototype.createElement = function() {
 
   // attach css transition listener
   let transitionEndEvent = whichTransitionEndEvent();
-  transitionEndEvent && el.addEventListener(transitionEndEvent, /* () => {
-    console.log('Transition of ' + this.elId + ' complete!'); */
+  transitionEndEvent && el.addEventListener(transitionEndEvent,
+    // console.log('Transition of ' + this.elId + ' complete!');
     this.onTransitionEnd.bind(this)
-  /* } */);
+  );
 
   // keep reference
   this.el = el;
