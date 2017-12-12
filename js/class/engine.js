@@ -18,9 +18,6 @@ let Engine = function(doc) {
  * @function
  */
 Engine.prototype.init = function() {
-  // reset board
-  this.gameBoard.innerHTML = '';
-
   // reset click count
   this.clickCount = 0;
 
@@ -136,6 +133,11 @@ Engine.prototype.onCardsRemoval = function() {
  */
 Engine.prototype.restart = function() {
   document.getElementById('game-over').style.display = 'none';
-  window.location.reload();
-  // this.init();
+  // window.location.reload();
+
+  // reset board
+  this.gameBoard.innerHTML = '';
+
+  // initialize game board
+  this.init();
 };
