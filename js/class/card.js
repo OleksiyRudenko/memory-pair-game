@@ -125,13 +125,20 @@ Card.prototype.onClick = function() {
   console.log('Clicked ' + this.elId);
   // flip on click only if isFaceDown
   if (this.isActive && this.isFaceDown) {
+    this.isFaceDown = false;
+    // first: flip the card
     this.queueVisualEffect(
       () => {
         this.el.classList.toggle('flip');
-        this.actionFlipOver(this.idIndex);
-        this.isFaceDown = false;
       },
       true
+    );
+    // second: invoke engine callback upon flip is completed
+    this.queueVisualEffect(
+      () => {
+        this.actionFlipOver(this.idIndex);
+      },
+      false
     );
   }
 };
@@ -146,10 +153,10 @@ Card.prototype.onClick = function() {
 Card.prototype.flipDown = function() {
   console.log('Flipping down ' + this.elId);
   if (this.isActive && !this.isFaceDown) {
+    this.isFaceDown = true;
     this.queueVisualEffect(
       () => {
         this.el.classList.toggle('flip');
-        this.isFaceDown = true;
       },
       true
     );
@@ -165,10 +172,10 @@ Card.prototype.flipDown = function() {
 Card.prototype.hide = function() {
   console.log('Hiding ' + this.elId);
   if (this.isActive) {
+    this.isActive = false;
     this.queueVisualEffect(
       () => {
         this.elFace.style.display = 'none';
-        this.isActive = false;
       },
       false
     );
