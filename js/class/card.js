@@ -53,7 +53,16 @@ Card.prototype.createElement = function() {
 
     // complete container
   el.appendChild(elFlipper);
+
+  // attach css transition listener
+  let transitionEvent = whichTransitionEvent();
+  transitionEvent && this.el.addEventListener(transitionEvent, () => {
+    console.log('Transition of ' + this.elId + ' complete!');
+  });
+
+  // keep reference
   this.el = el;
+
   console.log('Created ' + this.elId);
   return this.el;
 };
