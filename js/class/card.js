@@ -153,12 +153,19 @@ Card.prototype.onClick = function() {
 Card.prototype.flipDown = function() {
   console.log('Flipping down ' + this.elId);
   if (this.isActive && !this.isFaceDown) {
-    this.isFaceDown = true;
+    // flip card face down
     this.queueVisualEffect(
       () => {
         this.el.classList.toggle('flip');
       },
       true
+    );
+    // make card clickable only when it is completely flipped face down
+    this.queueVisualEffect(
+      () => {
+        this.isFaceDown = true;
+      },
+      false
     );
   }
 };
