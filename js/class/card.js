@@ -125,10 +125,14 @@ Card.prototype.onClick = function() {
   console.log('Clicked ' + this.elId);
   // flip on click only if isFaceDown
   if (this.isActive && this.isFaceDown) {
-    // obsolete: document.getElementById(this.elId).classList.toggle('flip');
-    this.el.classList.toggle('flip');
-    this.actionFlipOver(this.idIndex);
-    this.isFaceDown = false;
+    this.queueVisualEffect(
+      () => {
+        this.el.classList.toggle('flip');
+        this.actionFlipOver(this.idIndex);
+        this.isFaceDown = false;
+      },
+      true
+    );
   }
 };
 
@@ -142,9 +146,13 @@ Card.prototype.onClick = function() {
 Card.prototype.flipDown = function() {
   console.log('Flipping down ' + this.elId);
   if (this.isActive && !this.isFaceDown) {
-    // obsolete: document.getElementById(this.elId).classList.toggle('flip');
-    this.el.classList.toggle('flip');
-    this.isFaceDown = true;
+    this.queueVisualEffect(
+      () => {
+        this.el.classList.toggle('flip');
+        this.isFaceDown = true;
+      },
+      true
+    );
   }
 };
 
