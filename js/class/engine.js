@@ -35,7 +35,7 @@ Engine.prototype.init = function() {
   var cardSet = [];
   const onCardFlipOver = this.onCardFlipOver;
   let self = this;
-  console.log(this.onCardFlipOver);
+  // console.log(this.onCardFlipOver);
   cardSetIdList.forEach(function(cardSetId, index) {
     const card = new Card(cardSetId, index, onCardFlipOver.bind(self));
     cardSet.push(card);
@@ -57,9 +57,9 @@ Engine.prototype.init = function() {
 Engine.prototype.onCardFlipOver = function(idIndex) {
   this.clickCount++;
   // Add card to the queue.
-  console.log('Card #' + idIndex + ' flipped face up.');
+  // console.log('Card #' + idIndex + ' flipped face up.');
   this.flippedCardQueue.push(idIndex);
-  console.log(this.flippedCardQueue);
+  // console.log(this.flippedCardQueue);
 
   // If there are three cards in queue then it means two initial are mismatching,
   //   therefore remove initial two from queue and flip them over.
@@ -120,9 +120,9 @@ Engine.prototype.onCardsRemoval = function() {
     // console.log(el);
     if (el) count++;
   });
-  console.log(count + ' cards remain on the board');
+  // console.log(count + ' cards remain on the board');
   if (!count) {
-    console.log('No cards remaining!');
+    // console.log('No cards remaining!');
     document.getElementById('click-count').innerText = this.clickCount;
     document.getElementById('game-over').style.display = 'block';
   }
