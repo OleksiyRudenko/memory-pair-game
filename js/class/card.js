@@ -48,15 +48,17 @@ Card.prototype.createElement = function() {
   this.elFace = elFace;
   elFlipper.appendChild(elFace);
 
-  // add event handler
+  // add click event handler
   el.onclick = this.onClick.bind(this);
+  // attach ontouchstart="this.classList.toggle('flip');" event handler to deem swipes as clicks
+  el.ontouchstart = this.onClick.bind(this);
 
     // complete container
   el.appendChild(elFlipper);
 
   // attach css transition listener
   let transitionEvent = whichTransitionEvent();
-  transitionEvent && this.el.addEventListener(transitionEvent, () => {
+  transitionEvent && el.addEventListener(transitionEvent, () => {
     console.log('Transition of ' + this.elId + ' complete!');
   });
 
