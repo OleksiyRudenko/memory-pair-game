@@ -1,4 +1,5 @@
 // Create Engine instance
+// TODO: move following statement to class/engine.js
 let engine = new Engine(document);
 
 // Initialize game board
