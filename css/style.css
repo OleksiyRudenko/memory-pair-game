@@ -120,7 +120,7 @@ div.card {
 
 /* flipping effect speed */
 .flipper {
-    transition: 0.8s;
+    transition: 0.3s;
     transform-style: preserve-3d;
 
     position: relative;

@@ -101,7 +101,7 @@ Engine.prototype.onCardFlipOver = function(idIndex) {
       card1.hide();
       // check if any cards remain on the board
       this.onCardsRemoval();
-    }, 500); // 500
+    }, 100); // 500
   }
 };
 
