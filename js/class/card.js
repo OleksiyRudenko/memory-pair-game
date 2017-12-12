@@ -157,8 +157,12 @@ Card.prototype.flipDown = function() {
 Card.prototype.hide = function() {
   console.log('Hiding ' + this.elId);
   if (this.isActive) {
-    // obsolete: document.getElementById(this.elFaceId).style.display = 'none';
-    this.elFace.style.display = 'none';
-    this.isActive = false;
+    this.queueVisualEffect(
+      () => {
+        this.elFace.style.display = 'none';
+        this.isActive = false;
+      },
+      false
+    );
   }
 };
