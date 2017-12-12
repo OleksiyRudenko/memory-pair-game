@@ -5,7 +5,7 @@
 
 
 /* From Modernizr */
-function whichTransitionEvent(){
+function whichTransitionEndEvent(){
   let t;
   const el = document.createElement('fakeelement');
   const transitions = {
