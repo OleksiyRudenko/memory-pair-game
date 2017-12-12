@@ -15,6 +15,10 @@ let Card = function(setId, idIndex, actionFlipOver) {
   this.isActive = true;    // whether card is active (not removed yet)
   this.isFaceDown = true;  // whether is card face down
   this.actionFlipOver = actionFlipOver;
+
+  // css transition management
+  this.isInAnimation = false; // indicates whether any animation (transition) runs
+  this.visualEffectQueue = [];   // transition and visibility change calls queue; array of {isAnimated:,action}
 };
 
 /**
@@ -58,15 +62,56 @@ Card.prototype.createElement = function() {
 
   // attach css transition listener
   let transitionEndEvent = whichTransitionEndEvent();
-  transitionEndEvent && el.addEventListener(transitionEndEvent, () => {
-    console.log('Transition of ' + this.elId + ' complete!');
-  });
+  transitionEndEvent && el.addEventListener(transitionEndEvent, /* () => {
+    console.log('Transition of ' + this.elId + ' complete!'); */
+    this.onTransitionEnd.bind(this)
+  /* } */);
 
   // keep reference
   this.el = el;
 
   console.log('Created ' + this.elId);
   return this.el;
+};
+
+/**
+ * Invoked whenever card animation (transition) ends.
+ * Attached to card element in Card.init()
+ * @memberof Card
+ * @name onTransitionEnd
+ * @function
+ */
+Card.prototype.onTransitionEnd = function() {
+  console.log('Transition of ' + this.elId + ' has ended!');
+  this.isInAnimation = false;
+  // if any method in queue, then invoke it
+  if (this.visualEffectQueue.length) {
+    let action = this.visualEffectQueue.shift(); // remove method from queue and invoke it
+    this.isInAnimation = action.isAnimated;
+    action.action();
+  }
+};
+
+/**
+ * This queues action or executes it immediately if none is running.
+ * @memberof Card
+ * @name queueVisualEffect
+ * @function
+ * @param action - method to queue or execute
+ * @param isAnimated - true if action invokes animation; false is of immediate effect
+ */
+Card.prototype.queueVisualEffect = function(action, isAnimated) {
+  if (this.isInAnimation) {
+    // queue
+    this.visualEffectQueue.push({
+      isAnimated: isAnimated,
+      action: action,
+    });
+  } else {
+    // execute
+    this.isInAnimation = isAnimated;
+    action();
+  }
 };
 
 /**
