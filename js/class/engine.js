@@ -63,7 +63,7 @@ Engine.prototype.onCardFlipOver = function(idIndex) {
 
   // If there are three cards in queue then it means two initial are mismatching,
   //   therefore remove initial two from queue and flip them over.
-  if (this.flippedCardQueue.length === 3
+  if (this.flippedCardQueue.length >= 3
       && this.cardSet[this.flippedCardQueue[0]].setId !== this.cardSet[this.flippedCardQueue[1]].setId) {
     /* console.log('cardSet[~0]: ');
     console.log(this.cardSet[this.flippedCardQueue[0]]);
@@ -78,26 +78,30 @@ Engine.prototype.onCardFlipOver = function(idIndex) {
   }
   // If there are two cards in queue and their setIds are equal
   //   then hide/remove both from view, queue, and cardSet.
-  if (this.flippedCardQueue.length === 2
+  if (this.flippedCardQueue.length >= 2
     && this.cardSet[this.flippedCardQueue[0]].setId === this.cardSet[this.flippedCardQueue[1]].setId) {
     /* console.log('cardSet[~0]: ');
     console.log(this.cardSet[this.flippedCardQueue[0]]);
     console.log('cardSet[~1]: ');
     console.log(this.cardSet[this.flippedCardQueue[1]]); */
+    // store cards to animate removal
+    let card0 = this.cardSet[this.flippedCardQueue[0]],
+        card1 = this.cardSet[this.flippedCardQueue[1]];
+    this.cardSet[this.flippedCardQueue[0]] = null;
+    this.cardSet[this.flippedCardQueue[1]] = null;
+    /* console.log('Removed two cards from the board and have: ');
+    console.log(this.cardSet); */
+    this.flippedCardQueue.shift();
+    this.flippedCardQueue.shift();
+    /* console.log('Removed two cards from the queue and have: ');
+    console.log(this.flippedCardQueue); */
+    // animate removal
     setTimeout(() => {
-      this.cardSet[this.flippedCardQueue[0]].hide();
-      this.cardSet[this.flippedCardQueue[1]].hide();
-      this.cardSet[this.flippedCardQueue[0]] = null;
-      this.cardSet[this.flippedCardQueue[1]] = null;
-      /* console.log('Removed two cards from the board and have: ');
-      console.log(this.cardSet); */
-      this.flippedCardQueue.shift();
-      this.flippedCardQueue.shift();
-      /* console.log('Removed two cards from the queue and have: ');
-      console.log(this.flippedCardQueue); */
+      card0.hide();
+      card1.hide();
       // check if any cards remain on the board
       this.onCardsRemoval();
-    }, 500);
+    }, 500); // 500
   }
 };
 
