@@ -62,15 +62,15 @@ Card.prototype.createElement = function() {
 
   // attach css transition listener
   let transitionEndEvent = whichTransitionEndEvent();
-  transitionEndEvent && el.addEventListener(transitionEndEvent, /* () => {
-    console.log('Transition of ' + this.elId + ' complete!'); */
+  transitionEndEvent && el.addEventListener(transitionEndEvent,
+    // console.log('Transition of ' + this.elId + ' complete!');
     this.onTransitionEnd.bind(this)
-  /* } */);
+  );
 
   // keep reference
   this.el = el;
 
-  console.log('Created ' + this.elId);
+  // console.log('Created ' + this.elId);
   return this.el;
 };
 
@@ -82,7 +82,7 @@ Card.prototype.createElement = function() {
  * @function
  */
 Card.prototype.onTransitionEnd = function() {
-  console.log('Transition of ' + this.elId + ' has ended!');
+  // console.log('Transition of ' + this.elId + ' has ended!');
   this.isInAnimation = false;
   // if any method in queue, then invoke it
   if (this.visualEffectQueue.length) {
@@ -122,7 +122,7 @@ Card.prototype.queueVisualEffect = function(action, isAnimated) {
  * @function
  */
 Card.prototype.onClick = function() {
-  console.log('Clicked ' + this.elId);
+  // console.log('Clicked ' + this.elId);
   // flip on click only if isFaceDown
   if (this.isActive && this.isFaceDown) {
     this.isFaceDown = false;
@@ -151,14 +151,21 @@ Card.prototype.onClick = function() {
  * @function
  */
 Card.prototype.flipDown = function() {
-  console.log('Flipping down ' + this.elId);
+  // console.log('Flipping down ' + this.elId);
   if (this.isActive && !this.isFaceDown) {
-    this.isFaceDown = true;
+    // flip card face down
     this.queueVisualEffect(
       () => {
         this.el.classList.toggle('flip');
       },
       true
+    );
+    // make card clickable only when it is completely flipped face down
+    this.queueVisualEffect(
+      () => {
+        this.isFaceDown = true;
+      },
+      false
     );
   }
 };
@@ -170,7 +177,7 @@ Card.prototype.flipDown = function() {
  * @function
  */
 Card.prototype.hide = function() {
-  console.log('Hiding ' + this.elId);
+  // console.log('Hiding ' + this.elId);
   if (this.isActive) {
     this.isActive = false;
     this.queueVisualEffect(
