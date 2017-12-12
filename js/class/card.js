@@ -175,6 +175,12 @@ Card.prototype.hide = function() {
     this.isActive = false;
     this.queueVisualEffect(
       () => {
+        this.elFace.className += ' fade-out';
+      },
+      true
+    );
+    this.queueVisualEffect(
+      () => {
         this.elFace.style.display = 'none';
       },
       false
