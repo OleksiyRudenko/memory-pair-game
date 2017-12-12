@@ -9,6 +9,7 @@ let Card = function(setId, idIndex, actionFlipOver) {
   this.setId = setId;
   this.idIndex = idIndex;
   this.elId = '';          // card element id
+  this.el = null;          // reference to card element
   this.elFaceId = '';      // card face element id
   this.isActive = true;    // whether card is active (not removed yet)
   this.isFaceDown = true;  // whether is card face down
@@ -50,8 +51,9 @@ Card.prototype.createElement = function() {
 
     // complete container
   el.appendChild(elFlipper);
+  this.el = el;
   console.log('Created ' + this.elId);
-  return el;
+  return this.el;
 };
 
 /**
@@ -65,7 +67,8 @@ Card.prototype.onClick = function() {
   console.log('Clicked ' + this.elId);
   // flip on click only if isFaceDown
   if (this.isActive && this.isFaceDown) {
-    document.getElementById(this.elId).classList.toggle('flip');
+    // document.getElementById(this.elId).classList.toggle('flip');
+    this.el.classList.toggle('flip');
     this.actionFlipOver(this.idIndex);
     this.isFaceDown = false;
   }
@@ -81,7 +84,8 @@ Card.prototype.onClick = function() {
 Card.prototype.flipDown = function() {
   console.log('Flipping down ' + this.elId);
   if (this.isActive && !this.isFaceDown) {
-    document.getElementById(this.elId).classList.toggle('flip');
+    // document.getElementById(this.elId).classList.toggle('flip');
+    this.el.classList.toggle('flip');
     this.isFaceDown = true;
   }
 };
