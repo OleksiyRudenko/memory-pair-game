@@ -11,6 +11,7 @@ let Card = function(setId, idIndex, actionFlipOver) {
   this.elId = '';          // card element id
   this.el = null;          // reference to card element
   this.elFaceId = '';      // card face element id
+  this.elFace = null;      // reference to card face element
   this.isActive = true;    // whether card is active (not removed yet)
   this.isFaceDown = true;  // whether is card face down
   this.actionFlipOver = actionFlipOver;
@@ -44,6 +45,7 @@ Card.prototype.createElement = function() {
   elFace.className = 'card-side card-face card-face-' + this.setId;
   this.elFaceId = 'card-face-id-' + this.idIndex;
   elFace.id = this.elFaceId;
+  this.elFace = elFace;
   elFlipper.appendChild(elFace);
 
   // add event handler
@@ -99,7 +101,8 @@ Card.prototype.flipDown = function() {
 Card.prototype.hide = function() {
   console.log('Hiding ' + this.elId);
   if (this.isActive) {
-    document.getElementById(this.elFaceId).style.display = 'none';
+    // document.getElementById(this.elFaceId).style.display = 'none';
+    this.elFace.style.display = 'none';
     this.isActive = false;
   }
 };
