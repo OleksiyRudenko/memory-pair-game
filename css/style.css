@@ -243,28 +243,28 @@ button.btn-restart {
 
 @media screen and (min-width: 780px) and (min-height: 780px) {
     .game-board {
-        min-width: 760px;
-        width: 760px;
-        min-height: 760px;
-        height: 760px;
+        min-width: 680px;
+        width: 680px;
+        min-height: 680px;
+        height: 680px;
         border: 2px solid LightGray;
         border-radius: 7px;
     }
 
     div.card {
-        perspective: 240px;
+        perspective: 300px;
         margin: 3px;
-        min-width: 184px;
-        width: 184px;
-        min-height: 184px;
-        height: 184px;
+        min-width: 164px;
+        width: 164px;
+        min-height: 164px;
+        height: 164px;
     }
 
     .card-side {
-        min-width: 180px;
-        width: 180px;
-        min-height: 180px;
-        height: 180px;
+        min-width: 160px;
+        width: 160px;
+        min-height: 160px;
+        height: 160px;
         background-size: 90%;
         border: 2px solid DarkGray;
         border-radius: 7px;
@@ -273,28 +273,28 @@ button.btn-restart {
 
 @media screen and (min-width: 1000px) and (min-height: 1000px) {
     .game-board {
-        min-width: 984px;
-        width: 984px;
-        min-height: 984px;
-        height: 984px;
+        min-width: 936px;
+        width: 936px;
+        min-height: 936px;
+        height: 936px;
         border: 2px solid LightGray;
         border-radius: 10px;
     }
 
     div.card {
-        perspective: 300px;
+        perspective: 320px;
         margin: 12px;
-        min-width: 222px;
-        width: 222px;
-        min-height: 222px;
-        height: 222px;
+        min-width: 210px;
+        width: 210px;
+        min-height: 210px;
+        height: 210px;
     }
 
     .card-side {
-        min-width: 218px;
-        width: 218px;
-        min-height: 218px;
-        height: 218px;
+        min-width: 206px;
+        width: 206px;
+        min-height: 206px;
+        height: 206px;
         background-size: 90%;
         border: 2px solid DarkGray;
         border-radius: 10px;
