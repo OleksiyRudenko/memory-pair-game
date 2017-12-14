@@ -31,7 +31,7 @@ Engine.prototype.init = function() {
   // build cards
   const subContainer = this.doc.createElement('div');
   subContainer.className = 'game-board';
-  var cardSet = [];
+  let cardSet = [];
   const onCardFlipOver = this.onCardFlipOver;
   let self = this;
   // console.log(this.onCardFlipOver);
