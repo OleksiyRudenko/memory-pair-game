@@ -24,8 +24,7 @@ Engine.prototype.init = function() {
   // create shuffled list
   let cardSetIdList = [];
   for (let i=0; i<8; i++) {
-    cardSetIdList.push(i);
-    cardSetIdList.push(i);
+    cardSetIdList.push(i, i);
   }
   cardSetIdList.sort(function(){ return 0.5 - Math.random(); });
 
