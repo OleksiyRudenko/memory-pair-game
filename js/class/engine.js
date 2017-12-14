@@ -70,8 +70,7 @@ Engine.prototype.onCardFlipOver = function(idIndex) {
     console.log(this.cardSet[this.flippedCardQueue[1]]); */
     this.cardSet[this.flippedCardQueue[0]].flipDown();
     this.cardSet[this.flippedCardQueue[1]].flipDown();
-    this.flippedCardQueue.shift();
-    this.flippedCardQueue.shift();
+    this.flippedCardQueue.splice(0, 2);
     /* console.log('Removed two cards from the queue and have: ');
     console.log(this.flippedCardQueue); */
   }
@@ -90,8 +89,7 @@ Engine.prototype.onCardFlipOver = function(idIndex) {
     this.cardSet[this.flippedCardQueue[1]] = null;
     /* console.log('Removed two cards from the board and have: ');
     console.log(this.cardSet); */
-    this.flippedCardQueue.shift();
-    this.flippedCardQueue.shift();
+    this.flippedCardQueue.splice(0, 2);
     /* console.log('Removed two cards from the queue and have: ');
     console.log(this.flippedCardQueue); */
     // animate removal
