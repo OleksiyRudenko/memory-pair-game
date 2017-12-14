@@ -27,9 +27,7 @@ class Engine {
     for (let i = 0; i < 8; i++) {
       cardSetIdList.push(i, i);
     }
-    cardSetIdList.sort(function () {
-      return 0.5 - Math.random();
-    });
+    cardSetIdList.sort(() => 0.5 - Math.random());
 
     // build cards
     const subContainer = this.doc.createElement('div');
