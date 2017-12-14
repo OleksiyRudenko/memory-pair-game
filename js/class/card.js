@@ -27,7 +27,7 @@ class Card {
    * This creates div element containing the card.
    * @memberof Card
    * @name createElement
-   * @return {Object} div element containing card
+   * @return {HTMLElement} div element containing card
    */
   createElement() {
     // create card sides container
