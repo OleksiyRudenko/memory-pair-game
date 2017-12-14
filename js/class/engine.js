@@ -1,9 +1,10 @@
-/**
- * Class Engine constructor.
- * @constructor
- * @param {Object} doc - reference to document global
- */
+/** Class representing game Engine. */
 class Engine {
+  /**
+   * Initialize Engine.
+   * @constructor
+   * @param {Object} doc - reference to document global
+   */
   constructor(doc) {
     this.doc = doc;
     this.gameBoard = this.doc.getElementById('game-board'); // refers to game-board container
@@ -16,7 +17,6 @@ class Engine {
    * This intializes a game board.
    * @memberof Engine
    * @name init
-   * @function
    */
   init() {
     // reset click count
@@ -53,7 +53,6 @@ class Engine {
    * Called by Card.onClick()
    * @memberof Engine
    * @name onCardFlipOver
-   * @function
    * @param {number} idIndex - card id index
    */
   onCardFlipOver(idIndex) {
@@ -110,7 +109,6 @@ class Engine {
    * Called by Engine.onCardFlipOver()
    * @memberof Engine
    * @name onCardsRemoval
-   * @function
    */
   onCardsRemoval() {
     // If there are no cards in cardSet
@@ -133,7 +131,6 @@ class Engine {
    * Called by onClick event attached to a button at game over panel in app.js
    * @memberof Engine
    * @name restart
-   * @function
    */
   restart() {
     document.getElementById('game-over').style.display = 'none';

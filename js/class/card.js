@@ -1,11 +1,12 @@
-/**
- * Class Card constructor.
- * @constructor
- * @param {number} setId - set id a card would belong to
- * @param {number} idIndex - card id index
- * @param {onCardFlipOver} actionFlipOver - a callback Engine.onCardFlipOver
- */
+/** Class representing a card. */
 class Card {
+  /**
+   * Create a card.
+   * @constructor
+   * @param {number} setId - set id a card would belong to
+   * @param {number} idIndex - card id index
+   * @param {onCardFlipOver} actionFlipOver - a callback Engine.onCardFlipOver
+   */
   constructor(setId, idIndex, actionFlipOver) {
     this.setId = setId;
     this.idIndex = idIndex;
@@ -26,8 +27,7 @@ class Card {
    * This creates div element containing the card.
    * @memberof Card
    * @name createElement
-   * @function
-   * @returns {Object} div element containing card
+   * @return {Object} div element containing card
    */
   createElement() {
     // create card sides container
@@ -80,7 +80,6 @@ class Card {
    * Attached to card element in Card.init()
    * @memberof Card
    * @name onTransitionEnd
-   * @function
    */
   onTransitionEnd() {
     // console.log('Transition of ' + this.elId + ' has ended!');
@@ -97,7 +96,6 @@ class Card {
    * This queues action or executes it immediately if none is running.
    * @memberof Card
    * @name queueVisualEffect
-   * @function
    * @param action - method to queue or execute
    * @param isAnimated - true if action invokes animation; false is of immediate effect
    */
@@ -120,7 +118,6 @@ class Card {
    * Called by face element within card element event handler whenever card face is clicked.
    * @memberof Card
    * @name onClick
-   * @function
    */
   onClick() {
     // console.log('Clicked ' + this.elId);
@@ -149,7 +146,6 @@ class Card {
    * Called by Engine.onCardFlipOver()
    * @memberof Card
    * @name flipDown
-   * @function
    */
   flipDown() {
     // console.log('Flipping down ' + this.elId);
@@ -175,7 +171,6 @@ class Card {
    * This hides div element containing the card.
    * @memberof Card
    * @name hide
-   * @function
    */
   hide() {
     // console.log('Hiding ' + this.elId);
