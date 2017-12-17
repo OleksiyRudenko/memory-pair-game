@@ -32,16 +32,13 @@ class Engine {
     // build cards
     const subContainer = this.doc.createElement('div');
     subContainer.className = 'game-board';
-    let cardSet = [];
     const onCardFlipOver = this.onCardFlipOver;
     let self = this;
-    // console.log(this.onCardFlipOver);
-    cardSetIdList.forEach(function (cardSetId, index) {
+    this.cardSet = cardSetIdList.map((cardSetId, index) => {
       const card = new Card(cardSetId, index, onCardFlipOver.bind(self));
-      cardSet.push(card);
       subContainer.appendChild(card.createElement());
+      return card;
     });
-    this.cardSet = cardSet;
     // attach container to a game board container
     this.gameBoard.appendChild(subContainer);
   };
@@ -56,7 +53,6 @@ class Engine {
   onCardFlipOver(card) {
     this.clickCount++;
     // Add card to the queue.
-    // console.log('Card #' + idIndex + ' flipped face up.');
     this.flippedCardQueue.push(card);
     // console.log(this.flippedCardQueue);
 
