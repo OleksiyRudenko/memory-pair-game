@@ -83,8 +83,7 @@ class Engine {
       console.log('cardSet[~1]: ');
       console.log(this.cardSet[this.flippedCardQueue[1]]); */
       // store cards to animate removal
-      let card0 = this.flippedCardQueue[0],
-        card1 = this.flippedCardQueue[1];
+      let [card0, card1] = this.flippedCardQueue;
       this.cardSet[this.flippedCardQueue[0].idIndex] = null;
       this.cardSet[this.flippedCardQueue[1].idIndex] = null;
       /* console.log('Removed two cards from the board and have: ');
