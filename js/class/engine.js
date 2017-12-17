@@ -32,10 +32,8 @@ class Engine {
     // build cards
     const subContainer = this.doc.createElement('div');
     subContainer.className = 'game-board';
-    const onCardFlipOver = this.onCardFlipOver;
-    let self = this;
     this.cardSet = cardSetIdList.map((cardSetId, index) => {
-      const card = new Card(cardSetId, index, onCardFlipOver.bind(self));
+      const card = new Card(cardSetId, index, this.onCardFlipOver.bind(this));
       subContainer.appendChild(card.createElement());
       return card;
     });
