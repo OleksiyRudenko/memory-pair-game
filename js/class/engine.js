@@ -32,17 +32,27 @@ class Engine {
     }
     cardSetIdList.sort(() => 0.5 - Math.random());
 
-    // build cards
+    // build cards in a subcontainer and attach it to the game board container
+    this.gameBoard.appendChild(this.render(cardSetIdList));
+  };
+
+  /**
+   * Renders HTML Element
+   * @memberof Engine
+   * @name render
+   * @param {Array} cardSetIdList - [cardId]=setId...
+   * @return {HTMLElement} container of all cards
+   */
+  render(cardSetIdList) {
     const subContainer = this.doc.createElement('div');
     subContainer.className = 'game-board';
     this.cardSet = cardSetIdList.map((cardSetId, index) => {
-      const card = new Card(cardSetId, index, this.onCardFlipOver.bind(this));
+      const card = new Card(cardSetId, index);
       subContainer.appendChild(card.createElement());
       return card;
     });
-    // attach container to a game board container
-    this.gameBoard.appendChild(subContainer);
-  };
+    return subContainer;
+  }
 
   /**
    * Called by Engine.onClick()
