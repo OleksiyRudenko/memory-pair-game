@@ -7,7 +7,7 @@ class Card {
    * @param {number} idIndex - card id index
    * @param {onCardFlipOver} actionFlipOver - a callback Engine.onCardFlipOver
    */
-  constructor(setId, idIndex, actionFlipOver) {
+  constructor(setId, idIndex) {
     this.setId = setId;
     this.idIndex = idIndex;
     this.elId = '';          // card element id
@@ -16,7 +16,6 @@ class Card {
     this.elFace = null;      // reference to card face element
     this.isActive = true;    // whether card is active (not removed yet)
     this.isFaceDown = true;  // whether is card face down
-    this.actionFlipOver = actionFlipOver;
 
     // css transition management
     this.isInAnimation = false; // indicates whether any animation (transition) runs
@@ -43,6 +42,7 @@ class Card {
     // create card back element
     const elBack = document.createElement('div');
     elBack.className = 'card-side card-back';
+    elBack.setAttribute('data-card-id-index', this.idIndex);
     elFlipper.appendChild(elBack);
 
     // create card face element
@@ -52,11 +52,6 @@ class Card {
     elFace.id = this.elFaceId;
     this.elFace = elFace;
     elFlipper.appendChild(elFace);
-
-    // add click event handler
-    el.onclick = this.onClick.bind(this);
-    // attach ontouchstart="this.classList.toggle('flip');" event handler to deem swipes as clicks
-    el.ontouchstart = this.onClick.bind(this);
 
     // complete container
     el.appendChild(elFlipper);
@@ -111,12 +106,13 @@ class Card {
   };
 
   /**
-   * This flips the card and calls Engine.onCardFlipOver callback.
-   * Called by face element within card element event handler whenever card face is clicked.
+   * This flips the card.
+   * Called by Engine.onClick.
    * @memberof Card
-   * @name onClick
+   * @name flipFaceUp
+   * @return {Boolean} false if inactive or already face up
    */
-  onClick() {
+  flipFaceUp() {
     // flip on click only if isFaceDown
     if (this.isActive && this.isFaceDown) {
       this.isFaceDown = false;
@@ -127,14 +123,9 @@ class Card {
         },
         true
       );
-      // second: invoke engine callback upon flip is completed
-      this.queueVisualEffect(
-        () => {
-          this.actionFlipOver(this);
-        },
-        false
-      );
+      return true;
     }
+    return false;
   };
 
   /**

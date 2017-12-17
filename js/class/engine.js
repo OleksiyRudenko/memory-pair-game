@@ -11,6 +11,9 @@ class Engine {
     this.cardSet = [];          // stores instances of Card class
     this.flippedCardQueue = []; // stores flipped cards
     this.clickCount = 0;        // counts clicks to win
+    // attach click event handlers
+    this.gameBoard.onclick = this.onClick.bind(this);
+    this.gameBoard.ontouchstart = this.onClick.bind(this);
   };
 
   /**
@@ -43,7 +46,7 @@ class Engine {
 
   /**
    * This is a callback employed by a Card instance when the latter is being clicked.
-   * Called by Card.onClick()
+   * Called by Engine.onClick()
    * @memberof Engine
    * @name onCardFlipOver
    * @param {Card} card - Card instance
@@ -93,6 +96,29 @@ class Engine {
       document.getElementById('game-over').style.display = 'block';
     }
   };
+
+  /**
+   * Click event handler. Employs delegation.
+   * @memberof Engine
+   * @name onClick
+   * @param event
+   */
+  onClick(event) {
+    const target = event.target;
+    // go on only when card-back clicked
+    if (!target.classList.contains('card-back')) return;
+    const cardIdIndex = Number(target.getAttribute('data-card-id-index'));
+    const card = this.cardSet.find(c => c.idIndex === cardIdIndex);
+    if (card && card.flipFaceUp()) {
+      // check status upon flip is completed
+      card.queueVisualEffect(
+        () => {
+          this.onCardFlipOver(card);
+        },
+        false
+      );
+    }
+  }
 
   /**
    * This restarts the game.
