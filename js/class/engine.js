@@ -10,7 +10,7 @@ class Engine {
     this.gameBoard = this.doc.getElementById('game-board'); // refers to game-board container
     this.cardSet = [];          // stores instances of Card class
     this.flippedCardQueue = []; // stores flipped cards
-    this.clickCount = 0;        // counts flipped cards
+    this.clickCount = 0;        // counts clicks to win
   };
 
   /**
