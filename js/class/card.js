@@ -134,7 +134,7 @@ class Card {
       // second: invoke engine callback upon flip is completed
       this.queueVisualEffect(
         () => {
-          this.actionFlipOver(this.idIndex);
+          this.actionFlipOver(this);
         },
         false
       );

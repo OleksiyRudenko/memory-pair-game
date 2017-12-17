@@ -51,25 +51,25 @@ class Engine {
    * Called by Card.onClick()
    * @memberof Engine
    * @name onCardFlipOver
-   * @param {number} idIndex - card id index
+   * @param {Card} card - Card instance
    */
-  onCardFlipOver(idIndex) {
+  onCardFlipOver(card) {
     this.clickCount++;
     // Add card to the queue.
     // console.log('Card #' + idIndex + ' flipped face up.');
-    this.flippedCardQueue.push(idIndex);
+    this.flippedCardQueue.push(card);
     // console.log(this.flippedCardQueue);
 
     // If there are three cards in queue then it means two initial are mismatching,
     //   therefore remove initial two from queue and flip them over.
     if (this.flippedCardQueue.length >= 3
-      && this.cardSet[this.flippedCardQueue[0]].setId !== this.cardSet[this.flippedCardQueue[1]].setId) {
+      && this.flippedCardQueue[0].setId !== this.flippedCardQueue[1].setId) {
       /* console.log('cardSet[~0]: ');
       console.log(this.cardSet[this.flippedCardQueue[0]]);
       console.log('cardSet[~1]: ');
       console.log(this.cardSet[this.flippedCardQueue[1]]); */
-      this.cardSet[this.flippedCardQueue[0]].flipDown();
-      this.cardSet[this.flippedCardQueue[1]].flipDown();
+      this.flippedCardQueue[0].flipDown();
+      this.flippedCardQueue[1].flipDown();
       this.flippedCardQueue.splice(0, 2);
       /* console.log('Removed two cards from the queue and have: ');
       console.log(this.flippedCardQueue); */
@@ -77,16 +77,16 @@ class Engine {
     // If there are two cards in queue and their setIds are equal
     //   then hide/remove both from view, queue, and cardSet.
     if (this.flippedCardQueue.length >= 2
-      && this.cardSet[this.flippedCardQueue[0]].setId === this.cardSet[this.flippedCardQueue[1]].setId) {
+      && this.flippedCardQueue[0].setId === this.flippedCardQueue[1].setId) {
       /* console.log('cardSet[~0]: ');
       console.log(this.cardSet[this.flippedCardQueue[0]]);
       console.log('cardSet[~1]: ');
       console.log(this.cardSet[this.flippedCardQueue[1]]); */
       // store cards to animate removal
-      let card0 = this.cardSet[this.flippedCardQueue[0]],
-        card1 = this.cardSet[this.flippedCardQueue[1]];
-      this.cardSet[this.flippedCardQueue[0]] = null;
-      this.cardSet[this.flippedCardQueue[1]] = null;
+      let card0 = this.flippedCardQueue[0],
+        card1 = this.flippedCardQueue[1];
+      this.cardSet[this.flippedCardQueue[0].idIndex] = null;
+      this.cardSet[this.flippedCardQueue[1].idIndex] = null;
       /* console.log('Removed two cards from the board and have: ');
       console.log(this.cardSet); */
       this.flippedCardQueue.splice(0, 2);
