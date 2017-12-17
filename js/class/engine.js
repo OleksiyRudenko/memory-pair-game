@@ -56,8 +56,9 @@ class Engine {
     // Add card to the queue.
     this.flippedCardQueue.push(card);
 
-    // If there are three cards in queue then it means two initial are mismatching,
+    // If there are three or more cards in the queue then it means that two initial are mismatching,
     //   therefore remove initial two from queue and flip them over.
+    // This is intended behaviour when two non-matching cards are flipped back only upon third card click.
     if (this.flippedCardQueue.length >= 3
       && this.flippedCardQueue[0].setId !== this.flippedCardQueue[1].setId) {
       this.flippedCardQueue[0].flipDown();
@@ -65,7 +66,7 @@ class Engine {
       // remove cards from queue
       this.flippedCardQueue.splice(0, 2);
     }
-    // If there are two cards in queue and their setIds are equal
+    // If there are still two or more cards in queue and setIds of two initial cards are equal
     //   then hide/remove both from view, queue, and cardSet.
     if (this.flippedCardQueue.length >= 2
       && this.flippedCardQueue[0].setId === this.flippedCardQueue[1].setId) {
