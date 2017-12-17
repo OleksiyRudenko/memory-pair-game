@@ -52,39 +52,25 @@ class Engine {
     this.clickCount++;
     // Add card to the queue.
     this.flippedCardQueue.push(card);
-    // console.log(this.flippedCardQueue);
 
     // If there are three cards in queue then it means two initial are mismatching,
     //   therefore remove initial two from queue and flip them over.
     if (this.flippedCardQueue.length >= 3
       && this.flippedCardQueue[0].setId !== this.flippedCardQueue[1].setId) {
-      /* console.log('cardSet[~0]: ');
-      console.log(this.cardSet[this.flippedCardQueue[0]]);
-      console.log('cardSet[~1]: ');
-      console.log(this.cardSet[this.flippedCardQueue[1]]); */
       this.flippedCardQueue[0].flipDown();
       this.flippedCardQueue[1].flipDown();
+      // remove cards from queue
       this.flippedCardQueue.splice(0, 2);
-      /* console.log('Removed two cards from the queue and have: ');
-      console.log(this.flippedCardQueue); */
     }
     // If there are two cards in queue and their setIds are equal
     //   then hide/remove both from view, queue, and cardSet.
     if (this.flippedCardQueue.length >= 2
       && this.flippedCardQueue[0].setId === this.flippedCardQueue[1].setId) {
-      /* console.log('cardSet[~0]: ');
-      console.log(this.cardSet[this.flippedCardQueue[0]]);
-      console.log('cardSet[~1]: ');
-      console.log(this.cardSet[this.flippedCardQueue[1]]); */
       // store cards to animate removal
       let [card0, card1] = this.flippedCardQueue;
-      // remove cards from cardSet
+      // remove cards from cardSet and queue
       this.cardSet = this.cardSet.filter(c => !(c.idIndex === this.flippedCardQueue[0].idIndex || c.idIndex === this.flippedCardQueue[1].idIndex));
-      /* console.log('Removed two cards from the board and have: ');
-      console.log(this.cardSet); */
       this.flippedCardQueue.splice(0, 2);
-      /* console.log('Removed two cards from the queue and have: ');
-      console.log(this.flippedCardQueue); */
       // animate removal
       setTimeout(() => {
         card0.hide();

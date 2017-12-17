@@ -64,14 +64,12 @@ class Card {
     // attach css transition listener
     let transitionEndEvent = whichTransitionEndEvent();
     transitionEndEvent && el.addEventListener(transitionEndEvent,
-      // console.log('Transition of ' + this.elId + ' complete!');
       this.onTransitionEnd.bind(this)
     );
 
     // keep reference
     this.el = el;
 
-    // console.log('Created ' + this.elId);
     return this.el;
   };
 
@@ -82,7 +80,6 @@ class Card {
    * @name onTransitionEnd
    */
   onTransitionEnd() {
-    // console.log('Transition of ' + this.elId + ' has ended!');
     this.isInAnimation = false;
     // if any method in queue, then invoke it
     if (this.visualEffectQueue.length) {
@@ -120,7 +117,6 @@ class Card {
    * @name onClick
    */
   onClick() {
-    // console.log('Clicked ' + this.elId);
     // flip on click only if isFaceDown
     if (this.isActive && this.isFaceDown) {
       this.isFaceDown = false;
@@ -148,7 +144,6 @@ class Card {
    * @name flipDown
    */
   flipDown() {
-    // console.log('Flipping down ' + this.elId);
     if (this.isActive && !this.isFaceDown) {
       // flip card face down
       this.queueVisualEffect(
@@ -173,7 +168,6 @@ class Card {
    * @name hide
    */
   hide() {
-    // console.log('Hiding ' + this.elId);
     if (this.isActive) {
       this.isActive = false;
       this.queueVisualEffect(
