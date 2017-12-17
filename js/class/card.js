@@ -10,9 +10,7 @@ class Card {
   constructor(setId, idIndex) {
     this.setId = setId;
     this.idIndex = idIndex;
-    this.elId = '';          // card element id
     this.el = null;          // reference to card element
-    this.elFaceId = '';      // card face element id
     this.elFace = null;      // reference to card face element
     this.isActive = true;    // whether card is active (not removed yet)
     this.isFaceDown = true;  // whether is card face down
@@ -32,8 +30,7 @@ class Card {
     // create card sides container
     const el = document.createElement('div');
     el.className = 'card';
-    this.elId = 'card-' + this.idIndex;
-    el.id = this.elId;
+    el.id = 'card-' + this.idIndex;
 
     // create flipper div
     const elFlipper = document.createElement('div');
@@ -48,8 +45,7 @@ class Card {
     // create card face element
     const elFace = document.createElement('div');
     elFace.className = 'card-side card-face card-face-' + this.setId;
-    this.elFaceId = 'card-face-id-' + this.idIndex;
-    elFace.id = this.elFaceId;
+    elFace.id = 'card-face-id-' + this.idIndex;
     this.elFace = elFace;
     elFlipper.appendChild(elFace);
 
