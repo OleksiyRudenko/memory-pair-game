@@ -5,7 +5,6 @@ class Card {
    * @constructor
    * @param {number} setId - set id a card would belong to
    * @param {number} idIndex - card id index
-   * @param {onCardFlipOver} actionFlipOver - a callback Engine.onCardFlipOver
    */
   constructor(setId, idIndex) {
     this.setId = setId;
