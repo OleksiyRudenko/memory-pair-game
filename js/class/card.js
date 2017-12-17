@@ -184,7 +184,7 @@ class Card {
       );
       this.queueVisualEffect(
         () => {
-          this.elFace.style.display = 'none';
+          this.elFace.style.className += ' card-face-hide';
         },
         false
       );

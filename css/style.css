@@ -79,6 +79,10 @@ div.card {
     transform: rotateY(180deg);
 }
 
+.card-face-hide {
+    display: none;
+}
+
 /* individual card faces per set (8 sets, 2 similar cards in each) */
 .card-face-0 {
     background-image: url('../images/flag-brazil.png');
