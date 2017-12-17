@@ -17,7 +17,7 @@ class Engine {
   };
 
   /**
-   * This intializes a game board.
+   * This intializes a game board. Used on game launch and on game reset.
    * @memberof Engine
    * @name init
    */
@@ -45,7 +45,6 @@ class Engine {
   };
 
   /**
-   * This is a callback employed by a Card instance when the latter is being clicked.
    * Called by Engine.onClick()
    * @memberof Engine
    * @name onCardFlipOver
