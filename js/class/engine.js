@@ -84,8 +84,8 @@ class Engine {
       console.log(this.cardSet[this.flippedCardQueue[1]]); */
       // store cards to animate removal
       let [card0, card1] = this.flippedCardQueue;
-      this.cardSet[this.flippedCardQueue[0].idIndex] = null;
-      this.cardSet[this.flippedCardQueue[1].idIndex] = null;
+      // remove cards from cardSet
+      this.cardSet = this.cardSet.filter(c => !(c.idIndex === this.flippedCardQueue[0].idIndex || c.idIndex === this.flippedCardQueue[1].idIndex));
       /* console.log('Removed two cards from the board and have: ');
       console.log(this.cardSet); */
       this.flippedCardQueue.splice(0, 2);
@@ -108,16 +108,7 @@ class Engine {
    * @name onCardsRemoval
    */
   onCardsRemoval() {
-    // If there are no cards in cardSet
-    //   then game is completed, restart the game.
-    let count = 0;
-    this.cardSet.forEach(function (el) {
-      // console.log(el);
-      if (el) count++;
-    });
-    // console.log(count + ' cards remain on the board');
-    if (!count) {
-      // console.log('No cards remaining!');
+    if (!this.cardSet.length) {
       document.getElementById('click-count').innerText = this.clickCount;
       document.getElementById('game-over').style.display = 'block';
     }
