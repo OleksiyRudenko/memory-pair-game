@@ -117,7 +117,7 @@ class Engine {
     const target = event.target;
     // go on only when card-back clicked
     if (!target.classList.contains('card-back')) return;
-    const cardIdIndex = Number(target.getAttribute('data-card-id-index'));
+    const cardIdIndex = +target.getAttribute('data-card-id-index');
     const card = this.cardSet.find(c => c.idIndex === cardIdIndex);
     if (card && card.flipFaceUp()) {
       // check status upon flip is completed
